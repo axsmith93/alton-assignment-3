@@ -2,13 +2,13 @@ package com.coderscampus;
 
 public class User {
 
-	// instance variables
+	
 	private String username;
 	private String password;
 	private String name;
 	private int unsuccessfulLoginAttempts;
 
-	// Getters and Setters
+	
 	public String getUsername() {
 		return username;
 	}
@@ -34,9 +34,5 @@ public class User {
 
 	}
 
-	public String toString() {
-		return "User{" + "username='" + username + '\'' + ", password='" + password + '\'' + ", name='" + name + '\''
-				+ '}';
 
 	}
-}
