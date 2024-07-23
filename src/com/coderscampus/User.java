@@ -2,37 +2,44 @@ package com.coderscampus;
 
 public class User {
 
-	
-	private String username;
-	private String password;
-	private String name;
-	private int unsuccessfulLoginAttempts;
+	public String username;
+	public String password;
+	public String name;
 
-	
-	public String getUsername() {
-		return username;
+	public User(String username, String password, String name) {
+		this.username = username;
+		this.password = password;
+		this.name = name;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public User() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public String getUsername() {
+		return username;
 	}
 
 	public String getPassword() {
 		return password;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
 	public String getName() {
 		return name;
 	}
 
+	public void setUsername(String username) {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void setPassword(String password) {
+		// TODO Auto-generated method stub
+
+	}
+
 	public void setName(String name) {
-		this.name = name;
-
+		// TODO Auto-generated method stub
 	}
 
-
-	}
+}

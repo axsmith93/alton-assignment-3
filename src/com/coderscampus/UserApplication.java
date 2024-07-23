@@ -5,45 +5,32 @@ import java.util.Scanner;
 public class UserApplication {
 
 	public static void main(String[] args) {
-		UserService2 userService = new UserService2("data.txt");
-		Scanner scanner = new Scanner(System.in);
-
-		
-		String[][] userDetailsArray = {
-				{ "test@email.com", "passwordTest!1", "Test User" },
-				{ "another@user.com", "asdfasdf", "Another User" },
-				{ "john.doe@mydomain.net", "Hdk398jf!", "John Doe" },
-				{ "jane.doe@myotherdomain.com", "sunrise-sunset", "Jane Doe" } };
-
-		
-		User[] users = userService.createUsers(userDetailsArray);
-
-		
+		String fileName = "data.txt";
+		UserService2 userService = new UserService2(fileName);
+		userService.readUsersFromDataFile(fileName);
+		Scanner scanner = new Scanner(System.in); // pull up console to use keyboard
 		int attempts = 0;
-		final int MaxAttempts = 4;
+		boolean isLoggedIn = false; // starting login state. checks and updates during login process
 
-		
-		while (attempts < MaxAttempts) {
-			
-			System.out.print("Enter email: ");
-			String username = scanner.nextLine();
-			System.out.print("Enter password: ");
+		while (attempts < 5 && !isLoggedIn) { // loop login attempts less than 5 tries
+			System.out.print("Enter your email: ");
+			String username = scanner.nextLine().trim(); // trim removes whitespace
+			System.out.print("Enter your password: ");
 			String password = scanner.nextLine();
 
-			
-			if (users != null) {
-				System.out.println("Welcome: " + users);
-				break;
+			User loggedInUser = userService.getUserByCredentials(username, password); // pull matched user
+			if (loggedInUser != null) { // if user is found then update status to true
+				isLoggedIn = true;
+				System.out.println("Welcome, " + loggedInUser.getName()); // if true show matched name
 			} else {
 				attempts++;
-				if (attempts >= MaxAttempts) {
-					System.out.println("Too many failed login attempts, you are now locked out.");
-				} else {
+				if (attempts < 5) {
 					System.out.println("Invalid login, please try again.");
+				} else {
+					System.out.println("Too many failed login attempts, you are now locked out.");
 				}
 
 			}
-
 		}
 
 		scanner.close();
